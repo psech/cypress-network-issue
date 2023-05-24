@@ -2,7 +2,7 @@ FROM cypress/base:18.16.0
 
 WORKDIR /test
 
-RUN apt-get --assume-yes install curl
+RUN apt-get update && apt-get --assume-yes install curl
 
 COPY . ./
 

@@ -1,0 +1,21 @@
+FROM node:18 AS development
+
+ENV NODE_ENV development
+
+# Add a work directory
+WORKDIR /app
+
+# Copy app files
+COPY ./src .
+
+# Cache and Install dependencies
+RUN yarn install --production=false && yarn cache clean
+
+# Build
+RUN yarn build
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD [ "npx", "serve", "build" ]

@@ -10,10 +10,20 @@ pipeline {
   }
 
   stages {
-    stage("Build app image") {
-      steps {
-        sh 'echo Building app image'
-        sh 'docker build . -t app-image-$BUILD_NUMBER -f Dockerfile-app'
+    stage("Build images") {
+      parallel {
+        stage("Build app image") {
+          steps {
+            sh 'echo Building app image'
+            sh 'docker build . -t app-image-$BUILD_NUMBER -f Dockerfile-app'
+          }
+        }
+        stage("Build test image") {
+          steps {
+            sh 'echo Building app image'
+            sh 'docker build . -t test-image-$BUILD_NUMBER -f Dockerfile-test'
+          }
+        }
       }
     }
     stage("Start app container") {
@@ -43,8 +53,10 @@ pipeline {
       steps {
         sh 'docker network disconnect --force network-app-container-$BUILD_NUMBER app-container-$BUILD_NUMBER 2>/dev/null || true'
         sh 'docker stop app-container-$BUILD_NUMBER 2>/dev/null || true'
+        sh 'docker stop test-container-$BUILD_NUMBER 2>/dev/null || true'
         sh 'docker network rm network-app-container-$BUILD_NUMBER || true'
         sh 'docker image rm app-image-$BUILD_NUMBER'
+        sh 'docker image rm test-image-$BUILD_NUMBER'
       }
     }
   }

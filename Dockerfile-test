@@ -1,0 +1,4 @@
+FROM cypress/base:18.16.0
+RUN yarn add -D cypress playwright-webkit
+RUN npx playwright install-deps webkit
+RUN npx cypress verify

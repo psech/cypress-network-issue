@@ -6,7 +6,7 @@ ENV NODE_ENV development
 WORKDIR /app
 
 # Copy app files
-COPY ./src .
+COPY . ./
 
 # Cache and Install dependencies
 RUN yarn install --production=false && yarn cache clean

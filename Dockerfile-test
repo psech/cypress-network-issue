@@ -1,4 +1,10 @@
 FROM cypress/base:18.16.0
-RUN yarn add -D cypress playwright-webkit
+
+WORKDIR /test
+
+COPY . ./
+
+RUN yarn install --production=false && yarn cache clean
+
 RUN npx playwright install-deps webkit
 RUN npx cypress verify

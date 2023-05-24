@@ -49,6 +49,16 @@ pipeline {
         }
       }
     }
+    stage("Cypress tests") {
+      steps {
+        sh 'echo Running Cypress E2E tests'
+        sh '''
+          docker run --rm --name test-container-$BUILD_NUMBER \
+          --add-host=server.local:${APP_IP} --network=network-app-container-$BUILD_NUMBER \
+          test-image-$BUILD_NUMBER /bin/bash -c scripts/run-e2e.sh
+        '''
+      }
+    }
     stage('Cleanup') {
       steps {
         sh 'docker network disconnect --force network-app-container-$BUILD_NUMBER app-container-$BUILD_NUMBER 2>/dev/null || true'

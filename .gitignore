@@ -32,6 +32,9 @@ bld/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+# Cypress tests results
+**/videos
+
 # NUNIT
 *.VisualState.xml
 TestResult.xml

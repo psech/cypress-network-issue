@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:cypress": "wait-on http-get://server.local:3000 && cypress run --headless --browser webkit"
+    "test:cypress": "wait-on http-get://server.local:3000 && DEBUG=cypress:* cypress run --headless --browser webkit"
   },
   "eslintConfig": {
     "extends": [

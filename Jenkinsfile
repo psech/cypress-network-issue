@@ -54,7 +54,7 @@ pipeline {
         sh 'echo Running Cypress E2E tests'
         sh '''
           docker run --rm --name test-container-$BUILD_NUMBER \
-          --add-host=server.local:${APP_IP} --network=network-app-container-$BUILD_NUMBER \
+          --add-host=server.local:${APP_IP} --add-host=server.local.domain.com.au:${APP_IP} --network=network-app-container-$BUILD_NUMBER \
           test-image-$BUILD_NUMBER /bin/bash -c scripts/run-e2e.sh
         '''
       }

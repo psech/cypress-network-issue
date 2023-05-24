@@ -2,6 +2,8 @@ FROM cypress/base:18.16.0
 
 WORKDIR /test
 
+RUN apt-get --assume-yes install curl
+
 COPY . ./
 
 RUN yarn install --production=false && yarn cache clean

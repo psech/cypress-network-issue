@@ -8,5 +8,5 @@ COPY . ./
 
 RUN yarn install --production=false && yarn cache clean
 
-RUN npx playwright install-deps webkit
+RUN npx playwright install --with-deps webkit
 RUN npx cypress verify

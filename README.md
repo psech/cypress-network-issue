@@ -31,6 +31,6 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{println .IPAddress
 Run
 ```
 docker run --rm --name test-container \
-    --add-host=server.local:172.18.0.2 --network=network-cypress \
+    --add-host=server.local:<app-container-ip> --network=network-cypress \
     test-image /bin/bash -c scripts/run-e2e.sh
 ```

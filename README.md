@@ -1,6 +1,8 @@
 # Minimal Cypress WebKit Setup
 A minimal test setup to reproduce webkit ECONNRESET error.
 
+See GH issue https://github.com/cypress-io/cypress/issues/26847
+
 ### Create a network
 ```
 docker network create --driver bridge network-cypress
